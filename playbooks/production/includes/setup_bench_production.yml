@@ -28,7 +28,7 @@
       when: not app.stat.exists
 
     - name: Install erpnext app
-      command: bench --site {{ site }} install-app frappe_oo_integration
+      command: bench --site {{ site }} install-app oo_integration
       args:
         chdir: '{{ bench_path }}'
 
