@@ -17,18 +17,18 @@
       when: not site_folder.stat.exists
 
     - name: Check ERPNext App exists
-      stat: path="{{ bench_path }}/apps/erpnext"
+      stat: path="{{ bench_path }}/apps/frappe_oo_integration"
       register: app
 
     # In case we are re-running the script, we would like to skip getting ERPNext App
     - name: Get-app erpnext app
-      command: bench get-app erpnext https://github.com/frappe/erpnext.git --branch {{ branch }}
+      command: bench get-app erpnext https://github.com/paurosello/frappe_oo_integration.git --branch {{ branch }}
       args:
         chdir: '{{ bench_path }}'
       when: not app.stat.exists
 
     - name: Install erpnext app
-      command: bench --site {{ site }} install-app erpnext
+      command: bench --site {{ site }} install-app frappe_oo_integration
       args:
         chdir: '{{ bench_path }}'
 
