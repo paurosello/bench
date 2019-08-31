@@ -7,6 +7,7 @@ except ImportError:
 
 default_config = {
 	'restart_supervisor_on_update': False,
+	'restart_systemd_on_update': False,
 	'auto_update': False,
 	'serve_default_site': True,
 	'rebase_on_pull': False,
@@ -62,7 +63,7 @@ def update_config_for_frappe(config, bench_path):
 		if key not in config:
 			config[key] = "redis://localhost:{0}".format(ports[key])
 
-	for key in ('webserver_port', 'socketio_port'):
+	for key in ('webserver_port', 'socketio_port', 'file_watcher_port'):
 		if key not in config:
 			config[key] = ports[key]
 
@@ -75,6 +76,7 @@ def make_ports(bench_path):
 	default_ports = {
 		"webserver_port": 8000,
 		"socketio_port": 9000,
+		"file_watcher_port": 6787,
 		"redis_queue": 11000,
 		"redis_socketio": 12000,
 		"redis_cache": 13000
